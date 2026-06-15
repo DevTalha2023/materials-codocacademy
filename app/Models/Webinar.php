@@ -31,4 +31,17 @@ class Webinar extends Model
             'webinar_user'
         );
     }
+
+    public function users(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            User::class,
+            'webinar_user'
+        )
+            ->withPivot([
+                'assigned_at',
+                'expires_at',
+            ])
+            ->withTimestamps();
+    }
 }
