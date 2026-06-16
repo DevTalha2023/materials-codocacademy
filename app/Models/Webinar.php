@@ -6,6 +6,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Webinar extends Model
 {
@@ -30,5 +31,22 @@ class Webinar extends Model
             User::class,
             'webinar_user'
         );
+    }
+
+    public function users(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            User::class,
+            'webinar_user'
+        )
+            ->withPivot([
+                'assigned_at',
+                'expires_at',
+            ])
+            ->withTimestamps();
+    }
+    public function materials(): HasMany
+    {
+        return $this->hasMany(Material::class);
     }
 }

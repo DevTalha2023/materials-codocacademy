@@ -12,6 +12,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 #[Fillable(['attendee_id', 'name', 'email', 'password', 'is_registered'])]
 #[Hidden(['password', 'remember_token'])]
@@ -25,6 +26,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * Get the attributes that should be cast.
      *
      * @return array<string, string>
+     *
      */
     protected function casts(): array
     {
@@ -47,4 +49,19 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasRole('Student');
     }
+
+    public function webinars(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            Webinar::class,
+            'webinar_user'
+        )
+            ->withPivot([
+                'assigned_at',
+                'expires_at',
+            ])
+            ->withTimestamps();
+    }
+
+
 }
