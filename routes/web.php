@@ -27,8 +27,11 @@ Route::middleware([
 ])->group(function () {
 
     Route::get(
+        '/materials/{material}/viewer',
+        [MaterialViewerController::class, 'viewer']
+    )->name('materials.viewer');
+    Route::get(
         '/materials/{material}/view',
         [MaterialViewerController::class, 'show']
     )->name('materials.view');
-
 });
