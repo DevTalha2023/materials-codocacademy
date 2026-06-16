@@ -25,13 +25,6 @@ class Webinar extends Model
         'is_active' => 'boolean',
     ];
 
-    public function attendees(): BelongsToMany
-    {
-        return $this->belongsToMany(
-            User::class,
-            'webinar_user'
-        );
-    }
 
     public function users(): BelongsToMany
     {
