@@ -7,6 +7,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Material;
 
 class Webinar extends Model
 {
@@ -41,5 +42,15 @@ class Webinar extends Model
     public function materials(): HasMany
     {
         return $this->hasMany(Material::class);
+    }
+
+    public function activeMaterials(): HasMany
+    {
+        return $this->hasMany(
+            Material::class
+        )->where(
+                'is_active',
+                true
+            );
     }
 }
