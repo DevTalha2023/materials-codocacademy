@@ -48,4 +48,32 @@
 
     </div>
 
+    <div class="row mt-5">
+
+        <div class="col-12">
+
+            <div class="d-flex justify-content-between mb-3">
+
+                <h4>
+                    My Webinars
+                </h4>
+
+                <a href="#">
+                    View All
+                </a>
+
+            </div>
+
+        </div>
+
+        @foreach ($webinars as $webinar)
+            <div class="col-md-4 mb-4">
+
+                <x-dashboard.webinar-card :webinar="$webinar" />
+
+            </div>
+        @endforeach
+
+    </div>
+
 @endsection

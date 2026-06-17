@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MaterialViewerController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Student\MaterialController;
 
 
 Route::get('/', function () {
@@ -31,4 +32,5 @@ Route::middleware([
     Route::get('/materials/{material}/viewer', [MaterialViewerController::class, 'viewer'])->name('materials.viewer');
     Route::get('/materials/{material}/view', [MaterialViewerController::class, 'show'])->name('materials.view');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/materials', [MaterialController::class, 'index'])->name('materials.index');
 });

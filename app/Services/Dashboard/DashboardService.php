@@ -57,6 +57,9 @@ class DashboardService
                     )
                 );
         }
+        $webinars = $user->webinars()
+            ->withCount('materials')
+            ->get();
 
         return [
             'assignedWebinars' =>
@@ -73,6 +76,9 @@ class DashboardService
 
             'daysUntilExpiry' =>
                 $daysUntilExpiry,
+
+            'webinars' =>
+                $webinars,
         ];
     }
 }

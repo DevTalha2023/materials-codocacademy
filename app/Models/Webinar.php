@@ -17,6 +17,7 @@ class Webinar extends Model
         'webinar_date',
         'completion_date',
         'access_duration_days',
+        'thumbnail',
         'is_active',
     ];
 

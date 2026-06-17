@@ -26,7 +26,7 @@ return new class extends Migration {
 
             $table->boolean('is_active')
                 ->default(true);
-
+            $table->string('thumbnail')->nullable();
             $table->timestamps();
 
             $table->index('webinar_date');
