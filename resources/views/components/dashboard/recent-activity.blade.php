@@ -35,6 +35,7 @@
                         </td>
 
                         <td>
+                            {{-- {{ \Carbon\Carbon::parse($activity->viewed_at)->diffForHumans() }} --}}
                             {{ $activity->viewed_at->diffForHumans() }}
                         </td>
 

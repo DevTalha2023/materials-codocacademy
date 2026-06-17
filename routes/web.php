@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MaterialViewerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Student\MaterialController;
-
+use App\Http\Controllers\Student\WebinarController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -33,4 +33,9 @@ Route::middleware([
     Route::get('/materials/{material}/view', [MaterialViewerController::class, 'show'])->name('materials.view');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/materials', [MaterialController::class, 'index'])->name('materials.index');
+    Route::get(
+        '/my-webinars/{webinar}',
+        [WebinarController::class, 'show']
+    )->name('student.webinars.show');
+
 });

@@ -12,7 +12,8 @@ Route::middleware([
 
     Route::resource('webinars', WebinarController::class);
     Route::get('/admin/dashboard', function () {
-        return view('admin.dashboard'); });
+        return view('admin.dashboard');
+    });
     Route::post('/webinars/{webinar}/materials', [MaterialController::class, 'store'])->name('materials.store');
     Route::get(
         '/test-upload',

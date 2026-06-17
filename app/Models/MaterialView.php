@@ -14,6 +14,10 @@ class MaterialView extends Model
         'viewed_at',
     ];
 
+    protected $casts = [
+        'viewed_at' => 'datetime',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

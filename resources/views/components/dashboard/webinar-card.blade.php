@@ -3,8 +3,8 @@
     <div class="card-body">
 
         <div class="mb-3">
-            <img
-                src="{{ $webinar->thumbnail ? asset('storage/' . $webinar->thumbnail) : asset('images/default-webinar.jpg') }}">
+            <img src="{{ $webinar->thumbnail ? asset('storage/' . $webinar->thumbnail) : 'https://placehold.co/600x300?text=Webinar' }}"
+                class="img-fluid rounded">
         </div>
 
         <h5 class="fw-bold">
@@ -25,6 +25,10 @@
 
             View Materials
 
+        </a>
+
+        <a href="{{ route('student.webinars.show', $webinar) }}" class="btn btn-primary">
+            View Webinar
         </a>
 
     </div>
