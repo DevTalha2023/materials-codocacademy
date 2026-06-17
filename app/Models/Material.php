@@ -27,4 +27,11 @@ class Material extends Model
     {
         return $this->belongsTo(Webinar::class);
     }
+
+    public function views()
+    {
+        return $this->hasMany(
+            MaterialView::class
+        );
+    }
 }

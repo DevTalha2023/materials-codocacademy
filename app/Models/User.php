@@ -13,6 +13,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\MaterialView;
+
 
 #[Fillable(['attendee_id', 'name', 'email', 'password', 'is_registered'])]
 #[Hidden(['password', 'remember_token'])]
@@ -61,6 +64,13 @@ class User extends Authenticatable implements MustVerifyEmail
                 'expires_at',
             ])
             ->withTimestamps();
+    }
+
+    public function materialViews(): HasMany
+    {
+        return $this->hasMany(
+            MaterialView::class
+        );
     }
 
 

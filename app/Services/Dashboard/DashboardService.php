@@ -4,11 +4,18 @@ namespace App\Services\Dashboard;
 
 use App\Models\Material;
 use App\Models\User;
+use App\Services\Activity\RecentActivityService;
 
 class DashboardService
 {
+
+    public function __construct(
+        private readonly RecentActivityService $recentActivityService
+    ) {
+    }
     public function getStudentDashboardData(
-        User $user
+        User $user,
+
     ): array {
 
         $assignedWebinars =
@@ -61,6 +68,26 @@ class DashboardService
             ->withCount('materials')
             ->get();
 
+        $recentActivities =
+            $this->recentActivityService
+                ->getRecentActivities(
+                    $user
+                );
+
+        $expiringAccess =
+            $user->webinars()
+                ->wherePivot(
+                    'expires_at',
+                    '<=',
+                    now()->addDays(7)
+                )
+                ->wherePivot(
+                    'expires_at',
+                    '>',
+                    now()
+                )
+                ->get();
+
         return [
             'assignedWebinars' =>
                 $assignedWebinars,
@@ -79,6 +106,12 @@ class DashboardService
 
             'webinars' =>
                 $webinars,
+
+            'recentActivities' =>
+                $recentActivities,
+
+            'expiringAccess' =>
+                $expiringAccess,
         ];
     }
 }
